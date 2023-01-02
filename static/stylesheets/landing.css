@@ -1,0 +1,364 @@
+/* General CSS */
+* {
+  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  scrollbar-color: black grey;
+}
+
+div {
+  text-align: center;
+}
+
+header {
+  margin: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  margin: 25px;
+
+  font-family: 'Roboto Mono';
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+
+  letter-spacing: 0.05em;
+  line-height: 1.9em;
+  text-align: center;
+  
+  color: white;
+}
+
+[href] {
+  text-decoration-line: none;
+}
+
+.fit-screen {
+  height: 100%;
+  width: 100%;
+}
+
+.form {
+  width: 350px;
+}
+
+.bg-color-main {
+  background-color: rgb(2, 22, 49);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.low-margin {
+  margin: 0px 3px !important;
+}
+
+.medium-margin {
+  margin: 25px;
+}
+
+/* Landing CSS */
+.landing {
+  background-color: rgb(0, 0, 0);
+  height: 2930px;
+}
+
+/* Frame 1 */
+.frame-1 {
+  height: 800px;
+  width: 100%;
+  background-color: rgb(2, 22, 49);
+  overflow: hidden;
+
+  text-align: center;
+}
+
+.frame-1 h1 {
+  margin-top: 74px;
+  
+  font-family: 'Open Sans', sans-serif;
+  font-size: 4rem;
+  color: rgb(255, 255, 255);
+}
+
+.frame-1 h3 {
+  /* Explore. Learn. Repeat. */
+  margin-top: 71px;
+  font-style: normal;
+  font-size: 1.7rem;
+  line-height: 1.9rem;
+  letter-spacing: 0.195em;
+}
+
+/* Login Button */
+#login {
+  display: flex;
+  justify-content: end;
+}
+
+#login a {
+  width:fit-content;
+  height: fit-content;
+  padding: 12px 38px;
+  margin: 31px 39px;
+  
+  border: 3px solid white;
+  border-radius: 6px;
+  text-align: center;
+  
+  font-family: 'Helvetica', 'Arial';
+  font-size: 1rem;
+  font-weight: bold;
+  
+  background-color: rgb(98, 188, 204);
+  color: rgb(255, 255, 255);
+}
+
+/* Planet */
+#planet-container {
+  display: flex;
+  justify-content: center;
+  overflow:hidden;
+}
+
+#planet {
+  width: 1200px;
+  height: 1200px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  
+  margin-top: 135px;
+  
+  background: linear-gradient(180deg, #48E93A 0%, #000000 56.56%, #000000 100%);
+}
+
+/* Sign Up */
+#sign-up {
+  width: fit-content;
+  height: fit-content;
+  padding: 16px 66px;
+  
+  position: absolute;
+  z-index: 2;
+  
+  top: 275px;
+  
+  background-color:rgb(242, 185, 34);
+  color: #000000;
+  border: 3px solid black;
+  border-radius: 6px;
+  
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.045em;
+}
+
+/* Frame 2 */
+.frame-2 {
+  display: flex;
+  
+  height: 800px;
+  width: 100%;
+  background: linear-gradient(201.09deg, #194F62 0.63%, #2A3C3B 99.11%);
+  overflow: hidden;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Display */
+#display {
+  position: absolute;
+  flex-shrink: 2;
+
+  width: 1260px;
+  height: 760px;
+  margin: 0px 40px;
+
+  background-color: white;
+  background-color: transparent;
+  mix-blend-mode: hard-light;
+
+  border-width: 12px 1px;
+  border-style: solid;
+  border-color: #14B4C3;
+  border-radius: 34px;
+  filter: blur(3px);
+}
+
+#display-frame {
+  position: relative;
+  display: flex;
+
+  width: 1260px;
+  height: 700px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pattern */
+#pattern {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+
+  mix-blend-mode: soft-light;
+  opacity: 0.16;
+  filter: blur(1px);
+
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='5 5 75 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='death-star' fill='%23000000' fill-opacity='1'%3E%3Cpath d='M20 10a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm15 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zM20 75a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zm30-65a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V10zm0 65a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V75zM35 10a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zM5 45a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10zm60 35a5 5 0 0 1 10 0v50a5 5 0 0 1-10 0V45zm0-35a5 5 0 0 1 10 0v20a5 5 0 0 1-10 0V10z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+#light-a {
+  width: 100%;
+  height: 213px;
+
+  position: absolute;
+  top: -105px;
+
+  background: linear-gradient(180deg, #78F3FB 9.56%, rgba(120, 243, 251, 0) 109.96%);
+  mix-blend-mode: hard-light;
+  filter: blur(69px);
+}
+
+#light-b {
+  width: 100%;
+  height: 213px;
+
+  position: absolute;
+  bottom: -105px;
+
+  background: linear-gradient(180deg, #78F3FB 9.56%, rgba(120, 243, 251, 0) 109.96%);
+  mix-blend-mode: hard-light;
+  filter: blur(69px);
+  transform: rotate(-180deg);
+}
+
+/* Glowing elements */
+.teal-glow {
+  filter: drop-shadow(1px 1px 5px #FFFFFF);
+}
+
+.orange-glow {
+  filter: drop-shadow(0px 0px 5px #f4e047);
+}
+
+#gadget-game {
+  position: absolute;
+  top: 29px;
+  left: 35px; 
+}
+
+#gadget-planet {
+  position: absolute;
+  top: 29px;
+  right: 35px; 
+}
+
+#left-bars {
+  position: absolute;
+  top: 72px; 
+  left: 30px;
+}
+
+#right-bars {
+  position: absolute;
+  top: 72px; 
+  right: 30px;
+}
+
+.neon-lines {
+  height: 2px;
+  width: 86px;
+}
+
+.orange {
+  background-color: #FBF1BC;;
+}
+
+.neon-gradient {
+  width: 86px;
+  height: 169px;
+
+  background: linear-gradient(180deg, #C9B731 0%, rgba(185, 172, 70, 0.60117) 15.42%, rgba(183, 170, 73, 0.54) 19.58%, rgba(136, 136, 136, 0) 57.08%);
+  mix-blend-mode: lighten;
+}
+
+#left-strip-1 {
+  position:absolute;
+  width:86px; 
+  top: 329px; 
+  left: 114px;
+}
+
+#left-strip-2 {
+  position: absolute; 
+  width:86px; 
+  top: 356px; 
+  left: 206px;
+}
+
+#right-strip-1 {
+  position:absolute;
+  width:86px; 
+  top: 329px; 
+  right: 114px;
+}
+
+#right-strip-2 {
+  position: absolute; 
+  width:86px; 
+  top: 356px; 
+  right: 206px;
+}
+
+#cross-hair-line {
+  width: 35%;
+  height: 2px;
+  z-index: 10;
+
+  border-radius: 2px;
+}
+
+.high-tech {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  margin-top: 0px;
+
+  color: white;
+  width: 50%;
+  height: fit-content;
+
+  flex-grow: 1;
+}
+
+/* Login CSS */
+
+
+#form-inputs {
+  margin: 15px;
+}

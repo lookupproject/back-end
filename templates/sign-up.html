@@ -1,0 +1,91 @@
+{% extends "landing-template.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/landing.css') }}">
+{% endblock %}
+
+{% block content %}
+  <body class="fit-screen bg-color-main">
+
+    <header>
+      <a href="{{ url_for('landing') }}">
+        <svg width="75" height="75" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89"><defs><style>.cls-1{fill:#f4903c;}.cls-1,.cls-2{stroke:#231f20;stroke-miterlimit:10;}</style></defs><circle class="cls-1" cx="297.64" cy="415.66" r="261.43"/><path class="cls-2" d="M296.07,207.23c27.86,60.65,12.19,109.65-37.45,149.57,58.4,23.23,89.73-8.15,98.54-42.94C367.23,274.05,344.11,232.5,296.07,207.23Z"/><path class="cls-2" d="M347.22,376.65s-22.3,15.62-23.65,48,0,194.84,2.56,194.83c-20.77-23.89-40.57-27-59,0,1,1.16,1.66-153.56,0-193.85-1.52-37.22-26.43-48.94-26.43-48.94Q294,398.06,347.22,376.65Z"/><circle class="cls-2" cx="261.83" cy="258.5" r="14.65"/></svg>
+      </a>
+    </header>
+
+    <h3>Welcome to LookUp.</h3>
+  
+    <div class="flex">
+          
+  
+      {% for error in form.email.errors %}
+        <div
+        class="toast align-items-center text-bg-primary border-0 fade show"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">{{ error }}</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+      {% endfor %}
+  
+      {% for error in form.password2.errors %}
+        <div
+        class="toast align-items-center text-bg-primary border-0 fade show"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body">{{ error }}</div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  
+    <div class="flex medium-margin">
+      <form action="" method="post" novalidate class="form">
+        {{ form.hidden_tag() }}
+    
+        <div class="form-floating mb-3">
+          {{ form.username(class_="form-control mb-3", id="floatingInput", type="email", placeholder="name@example.com") }}
+          <label for="floatingInput">{{ form.username.label }}</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+          {{ form.email(class_="form-control mb-3", id="floatingInput", type="email", placeholder="name@example.com") }}
+          <label for="floatingInput">{{ form.email.label }}</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+          {{ form.password(class_="form-control mb-3", id="floatingPassword", type="password", placeholder="Password") }}
+          <label for="floatingPassword">{{ form.password.label }}</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+          {{ form.password2(class_="form-control mb-3", id="floatingPassword", type="password", placeholder="Password") }}
+          <label for="floatingPassword">{{ form.password2.label }}</label>
+        </div>
+    
+        <p class="d-grid gap-2">
+          {{ form.submit(class_="btn btn-outline-primary") }}
+        </p>
+      </form>
+    </div>
+  </body>
+{% endblock %}

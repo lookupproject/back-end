@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+
+  <!-- Google Fonts API, and styling files-->
+  <link rel="preconnect" href = "https://fonts.googleapis.com">
+  <link rel="preconnect" href = "https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500&family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+  
+  <!-- Page Metadata-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  
+  {% block head %}
+  <title>{% block title %}{% endblock %} | LookUp</title>
+  {% endblock %}
+</head>
+
+<!--Document Body -->
+<body class="fit-screen">
+  <header>
+    <a class="main-title" href="{{ url_for('home') }}">lookup</a>
+    <div class="links-nav-bar">
+      <a href="{{ url_for('path') }}" class="titles">Path</a>
+      <a href="{{ url_for('seasons') }}" class="titles">Seasons</a>
+      <a href="{{ url_for('community') }}" class="titles">Community</a>
+    </div>
+    <a class="profile-pic-wrapper" href="{{ url_for('logout') }}">
+      <img class="profile-pic" src="{{ current_user.img }}" alt="Profile Picture">
+    </a>
+    </header>
+  {% block content %}{% endblock %}
+</body>
+</html>

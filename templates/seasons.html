@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Seasons{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<body>
+  <h1>
+    Seasons
+  </h1>
+  <div id="main-button"></div>
+
+  <!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <script type="module" src="{{ url_for('static', filename='scripts/js/button.js') }}"></script>
+</body>
+{% endblock %}

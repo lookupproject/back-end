@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+
+  <!-- Google Fonts API, and styling files-->
+  <link rel="preconnect" href = "https://fonts.googleapis.com">
+  <link rel="preconnect" href = "https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500&family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+  <!--Google AJAX -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  
+  <!-- Page Metadata-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+  
+  {% block head %}
+  <title>{% block title %}{% endblock %} | LookUp</title>
+  {% endblock %}
+</head>
+
+<!--Document Body -->
+<body class="fit-screen">
+  <header>
+    <div class="container" style="height: 43px;">
+      <a href="{{ url_for('home') }}" id="return-logo">
+          <svg width="75" height="75" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89"><defs><style>.cls-1{fill:#f4903c;}.cls-1,.cls-2{stroke:#231f20;stroke-miterlimit:10;}</style></defs><circle class="cls-1" cx="297.64" cy="415.66" r="261.43"/><path class="cls-2" d="M296.07,207.23c27.86,60.65,12.19,109.65-37.45,149.57,58.4,23.23,89.73-8.15,98.54-42.94C367.23,274.05,344.11,232.5,296.07,207.23Z"/><path class="cls-2" d="M347.22,376.65s-22.3,15.62-23.65,48,0,194.84,2.56,194.83c-20.77-23.89-40.57-27-59,0,1,1.16,1.66-153.56,0-193.85-1.52-37.22-26.43-48.94-26.43-48.94Q294,398.06,347.22,376.65Z"/><circle class="cls-2" cx="261.83" cy="258.5" r="14.65"/></svg>
+      </a>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+</body>
+</html>

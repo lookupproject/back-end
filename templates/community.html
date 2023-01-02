@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Community{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+{% endblock %}
+
+{% block content %}
+{% import 'paginate.html' as paginate %}
+  <div id="app">
+    <div class="wrapper subtitle">
+      <h1>Community</h1>
+      <form action="/create" method="post" class="inline-flex">
+        <input type="submit" value="Create a course!">
+      </form>
+    </div>
+    <div id="user-courses" class="blue-border round-border">
+      <h3>My courses</h3>
+      {{ paginate.render_courses(page) }}
+    </div>
+  </div>
+{% endblock %}
