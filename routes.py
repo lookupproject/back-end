@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from app import app, db, load_user
 from models import User, Course, Progress
-from utils import generate_image_url, generate_prompt, sort
+from utils import generate_image_url, openai_response, sort
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, user_accessed, logout_user
@@ -9,8 +9,6 @@ from werkzeug.urls import url_parse
 from forms import RegistrationForm, LoginForm
 
 from sqlalchemy.orm.exc import NoResultFound
-
-import openai
 
 @app.route('/', methods=['GET', 'POST'])
 def landing():
@@ -200,4 +198,7 @@ def progress(course_id):
     "progress": progress.progress,
   }
 
-
+@app.route('/api/feedback', methods=['POST'])
+def feedback():
+  dict = request.get_json()
+  return {"feedback": openai_response(dict['context'], dict['question'], dict['answer'])}

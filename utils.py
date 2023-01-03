@@ -4,6 +4,7 @@ import json
 from models import Progress
 from random import randint
 
+import openai
        
 def generate_image_url():
   img_url=""
@@ -17,18 +18,17 @@ def generate_image_url():
 
   return img_url
 
-def generate_prompt(reference, answer):
-  return (f"""
-    You are an intelligent, charismatic and cheerful AI teacher. You have the task to decide whether or not a question was correctly answered. If you decide an answer is incorrect, provide feedback about why, be concrete. 
-
-    Correct Answer: A vector is an object that has both a magnitude and a direction. 
-    Provided Aswer: A vector is a number that has a direction.
-    Feedback: Mostly correct! Remember a vector has a magnitude as well.
-    
-    Correct Answer: {reference}.
-    Provided Answer: {answer}.
-    Feedback:"""
-  )
+def openai_response(context, question, answer):
+	response = openai.Completion.create(
+	model="text-davinci-003",
+	prompt="Evaluate an answer for a question given certain information. Limit response to the context given.\n\nContext: {context}\nQuestion: {question}\nAnswer: {answer}\n".format(context=context, question=question, answer=answer),
+	temperature=0.2,
+	max_tokens=256,
+	top_p=1,
+	frequency_penalty=0,
+	presence_penalty=0
+	)
+	return response.choices[0].text
 
 def sort(progress, course):
 	progress_idx=0
