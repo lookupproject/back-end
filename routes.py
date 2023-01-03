@@ -206,6 +206,6 @@ def fetch_feedback():
 @app.route('/api/classifier', methods=['POST'])
 def fetch_classifier():
   dict = request.get_json()
-  if dict['prompt'] == '':
+  if dict['prompt'].strip() == '':
     return { "type": '...' }
   return { "type" : classifier(dict['prompt'])}

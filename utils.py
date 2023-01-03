@@ -33,7 +33,7 @@ def openai_response(context, question, answer):
 def sort(progress, course):
 	progress_idx=0
 	course_idx=0
-
+	# sort
 	while progress_idx <= (len(progress.progress)-1):
 		if course_idx > (len(course.content)-1):
 			progress.progress.pop(progress_idx) #delete saved progress
@@ -45,14 +45,43 @@ def sort(progress, course):
 				progress_idx+=1
 				course_idx=0
 			else: #swap
-				progress_at_new_idx = progress.progress[course_idx]
-				progress.progress[course_idx] = progress.progress[progress_idx]
-				progress.progress[progress_idx] = progress_at_new_idx
-				course_idx=0
+				if course_idx > (len(progress.progress)-1):
+					starting_index = len(progress.progress)
+					for i in range(course_idx-(len(progress.progress)-1)):
+						item=course.content[starting_index]
+						if  item['type']== 'Question':
+							progress.progress.append({"viewed": False, "answer": "", "feedback": "", "id": item['id']})
+						else:
+							progress.progress.append({"viewed": False, "id": item['id']})
+					# adding clone
+					progress.progress[course_idx] = progress.progress[progress_idx]
+					item=course.content[progress_idx]
+					if  item['type']== 'Question':
+						progress.progress[progress_idx] = {"viewed": False, "answer": "", "feedback": "", "id": item['id']}
+					else:
+						progress.progress[progress_idx] = {"viewed": False, "id": item['id']}
+					# skipping clone
+					progress_idx+=1
+				else:
+					if not progress.progress[course_idx]["viewed"]:
+						# adding clone
+						progress.progress[course_idx] = progress.progress[progress_idx]
+						item=course.content[progress_idx]
+						if  item['type']== 'Question':
+							progress.progress[progress_idx] = {"viewed": False, "answer": "", "feedback": "", "id": item['id']}
+						else:
+							progress.progress[progress_idx] = {"viewed": False, "id": item['id']}
+						# skipping clone
+						progress_idx+=1
+					else:
+						progress_at_new_idx = progress.progress[course_idx]
+						progress.progress[course_idx] = progress.progress[progress_idx]
+						progress.progress[progress_idx] = progress_at_new_idx
+						course_idx=0
+
 	if len(course.content) > len(progress.progress):
 		starting_index = len(progress.progress)
 		for i in range(len(course.content)-len(progress.progress)):
-			print("THIS IS COURSE CONTENT LENGTH {}, THIS IS REQUESTED INDEX {}".format(len(course.content), starting_index+i))
 			item=course.content[starting_index+i]
 			if  item['type']== 'Question':
 				progress.progress.append({"viewed": False, "answer": "", "feedback": "", "id": item['id']})
