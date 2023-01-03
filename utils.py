@@ -85,3 +85,24 @@ def create_instance(model, course_content=[], **kwargs):
 
 	db.session.add(instance)
 	db.session.commit()
+
+def classifier(prompt):
+    response = openai.Completion.create(
+    model="ada:ft-nstituto-tecnol-gico-y-de-estudios-superiores-de-monterrey-2023-01-03-05-01-28",
+    prompt=prompt+' ->',
+    max_tokens=1)
+
+    q_class = response.choices[0].text
+    q_class = q_class.strip()
+    if (q_class == 'a'):
+        return 'Fact Recall'
+    elif (q_class == 's'):
+        return 'Low Convergent'
+    elif (q_class == 'd'):
+        return 'High Convergent'
+    elif (q_class == 'f'):
+        return 'Low Divergent'
+    elif (q_class == 'g'):
+        return 'High Divergent'
+    else:
+        return '...'

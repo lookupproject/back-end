@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from app import app, db, load_user
 from models import User, Course, Progress
-from utils import generate_image_url, openai_response, sort
+from utils import generate_image_url, openai_response, sort, classifier
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, user_accessed, logout_user
@@ -199,6 +199,13 @@ def progress(course_id):
   }
 
 @app.route('/api/feedback', methods=['POST'])
-def feedback():
+def fetch_feedback():
   dict = request.get_json()
   return {"feedback": openai_response(dict['context'], dict['question'], dict['answer'])}
+
+@app.route('/api/classifier', methods=['POST'])
+def fetch_classifier():
+  dict = request.get_json()
+  if dict['prompt'] == '':
+    return { "type": '...' }
+  return { "type" : classifier(dict['prompt'])}
