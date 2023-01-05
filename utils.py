@@ -139,21 +139,19 @@ def classifier(prompt):
 
 def fact_evaluator(text, answer):
 	response = openai.Completion.create(
-		model="text-davinci-003",
-		prompt="""Classify between correct or incorrect by evaluataing if the main idea of a text is present in a response. 
-		If incorrect, write the main idea with the classification.
-		\n\nText: branch of mathematics concerned with the calculation of 
-		instantaneous rates of change (differential calculus) and the summation of infinitely 
-		many small factors to determine some whole (integral calculus). \nResponse: Calculus is the study of change.
-		\nAnswer: Incorrect, calculus is the branch of mathematics concerned with the calculation of instantaneous 
-		rates of change and the summation of infinitely many small factors. 
-		\n\nText: {} 
-		\nResponse: {}\nAnswer:""".format(text, answer),
-		temperature=0.2,
-		max_tokens=256,
-		top_p=1,
-		frequency_penalty=0,
-		presence_penalty=0
+	model="text-davinci-003",
+	prompt="""Describe what parts of an attempt to an answer are missing from the correct answer. 
+	If none classify it as complete.\nCorrect Answer: Generally, the process involves filing a notice 
+	of appeal with the court, preparing a written brief outlining the legal arguments for the appeal, 
+	and appearing in court for oral arguments.\nAttempt: The appellant must submit documents detailing 
+	why the decision should be overturned.\nFeedback: Correct, as well  the process also involves  preparing 
+	a written brief outlining the legal arguments for the appeal, and appearing in court for oral arguments.
+	\n\nCorrect Answer: {}\nAttempt: {}\nFeedback:""".format(text, answer),
+	temperature=0.2,
+	max_tokens=256,
+	top_p=1,
+	frequency_penalty=0,
+	presence_penalty=0
 	)
 
 	return response.choices[0].text
