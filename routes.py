@@ -109,7 +109,7 @@ def branches():
 @login_required
 def community():
   user_courses_page = db.session.query(Course).filter_by(creator_id=current_user.id).paginate(per_page=4)
-  course_page = db.session.query(Course).filter(Course.creator_id!=2).paginate(per_page=12)
+  course_page = db.session.query(Course).filter(Course.creator_id!=current_user.id).paginate(per_page=12)
   return render_template("community.html", 
   user_courses_page=user_courses_page, 
   course_page=course_page,
