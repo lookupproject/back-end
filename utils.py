@@ -155,3 +155,22 @@ def fact_evaluator(text, answer):
 	)
 
 	return response.choices[0].text
+
+def divergent_evaluator(restrictions, answer):
+	response = openai.Completion.create(
+	model="text-davinci-003",
+	prompt="""Evaluate whether certain restrictions are satisfied or not.
+	\n\nRestrictions: Must be focused on young people. Must have some relevance 
+	to science and technology. Must be an activity\nText to evaluate: Creating 
+	videogames with science and technology tematics.\nEvaluation: 3/3. 
+	Acceptable\n\nRestrictions: Must be an action. Must be related to education. 
+	Must address reduction on money. Must address equity.\nText to evaluate: I would make education 
+	free for everyone.\nEvaluation: 3/4. It does not address equity.\n\nRestrictions:{}\nText to evaluate: {}\nEvaluation:""".format(restrictions, answer),
+	temperature=0.2,
+	max_tokens=256,
+	top_p=1,
+	frequency_penalty=0,
+	presence_penalty=0
+	)
+
+	return response.choices[0].text
