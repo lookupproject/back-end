@@ -108,8 +108,10 @@ def branches():
 @app.route('/community', methods=['GET', 'POST'])
 @login_required
 def community():
+  page = request.args.get('p', 1, type=int)
   user_courses_page = db.session.query(Course).filter_by(creator_id=current_user.id).paginate(per_page=4)
-  course_page = db.session.query(Course).filter(Course.creator_id!=current_user.id).paginate(per_page=12)
+  course_page = db.session.query(Course).filter(Course.creator_id!=current_user.id).paginate(page=page, per_page=12)
+
   return render_template("community.html", 
   user_courses_page=user_courses_page, 
   course_page=course_page,

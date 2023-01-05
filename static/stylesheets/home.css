@@ -439,6 +439,16 @@ section {
   grid-row: 2 / 3;
 }
 
+.pagination {
+  text-align: center;
+  color: white;
+  width: auto;
+  height: fit-content;
+  margin: 7px 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
 #course-pagination-path {
   width: auto;
   margin: 40px;
