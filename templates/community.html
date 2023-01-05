@@ -16,11 +16,11 @@
         </form>
       </div>
       <div id="course-pagination">
-        {{ paginate.render_community_courses(course_page, db, User) }}
+        {{ paginate.render_courses(course_page, db, User) }}
       </div>
       <div id="user-courses" class="blue-border round-border">
         <h5>My courses</h5>
-        {{ paginate.render_courses(user_courses_page) }}
+        {{ paginate.render_user_courses(user_courses_page) }}
       </div>
     </div>
   </div>

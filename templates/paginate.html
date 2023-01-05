@@ -17,7 +17,7 @@
   </div>
 {% endmacro %}
 
-{% macro render_community_courses(pagination, db, User) %}
+{% macro render_courses(pagination, db, User) %}
   {% for course in pagination.items %}
     <div id="course-widget" class="round-border blue-border-dashed dark-blue-background">
       <h4>{{ course.name }}</h4>
@@ -32,7 +32,7 @@
   {% endfor %}
 {% endmacro %}
 
-{% macro render_courses(pagination) %}
+{% macro render_user_courses(pagination) %}
   {% for course in pagination.items %}
     <div id="course-widget" class="round-border blue-border-dashed blue-background">
       <h4>{{ course.name }}</h4>

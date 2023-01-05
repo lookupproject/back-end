@@ -96,7 +96,9 @@ def home():
 @app.route('/path', methods=['GET', 'POST'])
 @login_required
 def path():
-  return render_template("path.html")
+  page = db.session.query(Progress).filter_by(user_id=current_user.id).paginate(per_page=12)
+
+  return render_template("path.html", page=page, db=db, User=User)
 
 @app.route('/seasons', methods=['GET', 'POST'])
 @login_required

@@ -1,19 +1,19 @@
-<!-- sourced from https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html -->
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block title %}Path{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+{% endblock %}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>React Starter</title>
-</head>
-
-<body>
-  <div id="root"></div>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  <script src="{{ url_for('static', filename='prueba/bundle.js') }}"></script>
-</body>
-
-</html>
+{% block content %}
+{% import 'paginate.html' as paginate %}
+  <div class="flex">
+    <div id="app">
+      <div class="wrapper subtitle">
+        <h1>Path</h1>
+      </div>
+      <div id="course-pagination">
+      </div>
+    </div>
+  </div>
+{% endblock %}
