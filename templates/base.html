@@ -32,12 +32,15 @@
 <!--Document Body -->
 <body class="fit-screen">
   <header>
-    <div class="container flex">
-      <a class="main-title" href="{{ url_for('home') }}">lookup</a>
+    <div class="header">
+    <a href="{{ url_for('home') }}">
+      <svg width="75" height="75" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89"><defs><style>.cls-1{fill:#f4903c;}.cls-1,.cls-2{stroke:#231f20;stroke-miterlimit:10;}</style></defs><circle class="cls-1" cx="297.64" cy="415.66" r="261.43"/><path class="cls-2" d="M296.07,207.23c27.86,60.65,12.19,109.65-37.45,149.57,58.4,23.23,89.73-8.15,98.54-42.94C367.23,274.05,344.11,232.5,296.07,207.23Z"/><path class="cls-2" d="M347.22,376.65s-22.3,15.62-23.65,48,0,194.84,2.56,194.83c-20.77-23.89-40.57-27-59,0,1,1.16,1.66-153.56,0-193.85-1.52-37.22-26.43-48.94-26.43-48.94Q294,398.06,347.22,376.65Z"/><circle class="cls-2" cx="261.83" cy="258.5" r="14.65"/></svg>
+    </a>
+    <a class="main-title" href="{{ url_for('home') }}">lookup</a>
       <div class="links-nav-bar">
+        <a href="{{ url_for('community') }}" class="titles">Community</a>
         <a href="{{ url_for('path') }}" class="titles">Path</a>
         <a href="{{ url_for('seasons') }}" class="titles">Seasons</a>
-        <a href="{{ url_for('community') }}" class="titles">Community</a>
       </div>
       <a class="profile-pic-wrapper" href="{{ url_for('logout') }}">
         <img class="profile-pic" src="{{ current_user.img }}" alt="Profile Picture">

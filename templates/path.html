@@ -12,7 +12,8 @@
       <div class="wrapper subtitle">
         <h1>Path</h1>
       </div>
-      <div id="course-pagination">
+      <div id="course-pagination-path">
+        {{ paginate.render_courses(page, db, User) }}
       </div>
     </div>
   </div>
