@@ -7,16 +7,21 @@
 
 {% block content %}
 {% import 'paginate.html' as paginate %}
-  <div id="app">
-    <div class="wrapper subtitle">
-      <h1>Community</h1>
-      <form action="/create" method="post" class="inline-flex">
-        <input type="submit" value="Create a course!">
-      </form>
-    </div>
-    <div id="user-courses" class="blue-border round-border">
-      <h3>My courses</h3>
-      {{ paginate.render_courses(page) }}
+  <div class="flex">
+    <div id="app">
+      <div class="wrapper subtitle">
+        <h1>Community</h1>
+        <form action="/create" method="post" class="inline-flex">
+          <input type="submit" value="Create a course!">
+        </form>
+      </div>
+      <div id="course-pagination">
+        {{ paginate.render_community_courses(course_page, db, User) }}
+      </div>
+      <div id="user-courses" class="blue-border round-border">
+        <h5>My courses</h5>
+        {{ paginate.render_courses(user_courses_page) }}
+      </div>
     </div>
   </div>
 {% endblock %}

@@ -119,7 +119,8 @@ def classifier(prompt):
     response = openai.Completion.create(
     model="ada:ft-nstituto-tecnol-gico-y-de-estudios-superiores-de-monterrey-2023-01-03-05-01-28",
     prompt=prompt+' ->',
-    max_tokens=1)
+    max_tokens=1
+	)
 
     q_class = response.choices[0].text
     q_class = q_class.strip()
@@ -135,3 +136,24 @@ def classifier(prompt):
         return 'High Divergent'
     else:
         return '...'
+
+def fact_evaluator(text, answer):
+	response = openai.Completion.create(
+		model="text-davinci-003",
+		prompt="""Classify between correct or incorrect by evaluataing if the main idea of a text is present in a response. 
+		If incorrect, write the main idea with the classification.
+		\n\nText: branch of mathematics concerned with the calculation of 
+		instantaneous rates of change (differential calculus) and the summation of infinitely 
+		many small factors to determine some whole (integral calculus). \nResponse: Calculus is the study of change.
+		\nAnswer: Incorrect, calculus is the branch of mathematics concerned with the calculation of instantaneous 
+		rates of change and the summation of infinitely many small factors. 
+		\n\nText: {} 
+		\nResponse: {}\nAnswer:""".format(text, answer),
+		temperature=0.2,
+		max_tokens=256,
+		top_p=1,
+		frequency_penalty=0,
+		presence_penalty=0
+	)
+
+	return response.choices[0].text

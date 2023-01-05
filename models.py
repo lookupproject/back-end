@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import db, login
-from sqlalchemy import ForeignKey, Column, String, Integer, JSON
+from sqlalchemy import ForeignKey, Column, String, Integer, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy_json import mutable_json_type
 from sqlalchemy.dialects.postgresql import JSONB
@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
   username = Column(String(25), index=True, unique=True)
   email = Column(String(120), index=True, unique=True)
   img = Column(String(300),index=False, unique=False)
+  path = Column(mutable_json_type(dbtype=JSONB, nested=True))
   password_hash = Column(String(128))
 
   courses = relationship('Course', backref='user', lazy='dynamic', cascade="all, delete-orphan")
@@ -31,6 +32,7 @@ class Course(db.Model):
   __tablename__ = 'courses'
   id = Column(Integer, primary_key = True, index = True)
   name = Column(String(25), index = True)
+  classification = Column(String(25), index = True)
   version = Column(Integer, index = True)
   content = Column(mutable_json_type(dbtype=JSONB, nested=True))
   creator_id = Column(Integer, ForeignKey('users.id'))
@@ -45,6 +47,7 @@ class Progress(db.Model):
   id = Column(Integer, primary_key = True)
   version = Column(Integer, index = True)
   progress = Column(mutable_json_type(dbtype=JSONB, nested=True))
+  finished = Column(Boolean, index = True )
   
   user_id = Column(Integer, ForeignKey('users.id'))
   course_id = Column(Integer, ForeignKey('courses.id'))

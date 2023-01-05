@@ -32,16 +32,18 @@
 <!--Document Body -->
 <body class="fit-screen">
   <header>
-    <a class="main-title" href="{{ url_for('home') }}">lookup</a>
-    <div class="links-nav-bar">
-      <a href="{{ url_for('path') }}" class="titles">Path</a>
-      <a href="{{ url_for('seasons') }}" class="titles">Seasons</a>
-      <a href="{{ url_for('community') }}" class="titles">Community</a>
+    <div class="container flex">
+      <a class="main-title" href="{{ url_for('home') }}">lookup</a>
+      <div class="links-nav-bar">
+        <a href="{{ url_for('path') }}" class="titles">Path</a>
+        <a href="{{ url_for('seasons') }}" class="titles">Seasons</a>
+        <a href="{{ url_for('community') }}" class="titles">Community</a>
+      </div>
+      <a class="profile-pic-wrapper" href="{{ url_for('logout') }}">
+        <img class="profile-pic" src="{{ current_user.img }}" alt="Profile Picture">
+      </a>
     </div>
-    <a class="profile-pic-wrapper" href="{{ url_for('logout') }}">
-      <img class="profile-pic" src="{{ current_user.img }}" alt="Profile Picture">
-    </a>
-    </header>
+  </header>
   {% block content %}{% endblock %}
 </body>
 </html>

@@ -8,6 +8,7 @@
   --dark-green: #133B49;
   --grey: #2E2E2E;
   --dark-grey:#1d1d1d;
+  --very-dark-blue: #070416;
 }
 
 body {
@@ -19,35 +20,29 @@ body {
   scrollbar-color: black grey;
   background-color: var(--dark-blue);
   box-sizing: border-box;
+  position: relative;
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   width: 8px;
   height: 10px;
   cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   border-radius: 12px;
   background: var(--dark-grey);
 }
 
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background-color: var(--grey);
 }
 
 header {
-  height: 12vh;
+  height: 60px;
   width: 100%;
-
-  display: grid;
-  grid-template-columns: 19vw 60vw 19vw;
-  grid-template-rows: 100%;
-  grid-gap: 2vw;
-  max-height: 100vh;
   box-sizing: border-box;
-
-  padding: 10px;
+  background-color: var(--dark-blue);
 }
 
 div {
@@ -85,7 +80,7 @@ h3 {
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   line-height: 1.3em;
   letter-spacing: 0.05em;
 
@@ -101,10 +96,37 @@ h4 {
   font-size: 1rem;
   line-height: 1.3em;
   letter-spacing: 0.05em;
-
+  
   margin: 1em;
   color: #FFFFFF;
 }
+
+h5 {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.3em;
+  letter-spacing: 0.05em;
+
+  margin: 1.2em;
+  color: #FFFFFF;
+}
+
+h6 {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 100;
+  font-size: 0.9rem;
+  line-height: 1.3em;
+  letter-spacing: 0.05em;
+
+  text-align: center;
+
+  margin: 1.2em;
+  color: #FFFFFF;
+}
+
 
 [href] {
   text-decoration-line: none;
@@ -118,15 +140,14 @@ li {
 
 #app {
   display: grid;
-  grid-template-columns: 66vw 33vw;
-  grid-template-rows: 14vh 72vh;
-  grid-gap: 1vw;
-  max-height: 100vh;
+  grid-template-columns: minmax(700px, 1200px) minmax(350px, 600px);
+  grid-template-rows: 150px auto;
+  grid-gap: 10px;
   box-sizing: border-box;
 }
 
 .container {
-  width: 1200px;
+  width: 1810px;
   margin-right: auto;
   margin-left: auto;
   padding: 0 12px;
@@ -139,6 +160,7 @@ li {
 }
 
 .fit-screen {
+  margin-top: 0px;
   height: 100%;
   width: 100%;
 }
@@ -168,7 +190,8 @@ li {
 
 /* Home */
 .username {
-  margin: 50px;  
+  margin: auto;
+  position: absolute;
 }
 
 .main-title {
@@ -267,13 +290,6 @@ li {
 
 .icon {
   width: 34px;
-}
-
-h6 {
-  font-size: 1rem;
-  font-family: 'Roboto Mono', sans-serif;
-  font-weight: 300;
-  color: white;
 }
 
 form {
@@ -395,12 +411,24 @@ section {
 
   background-color: var(--semi-dark-blue);
 
-  min-height: 550px;
+  min-height: 600px;
   min-width: 190px;
 
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 
+}
+
+#course-pagination {
+  width: auto;
+  margin: 40px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: baseline;
+
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
 }
 
 .subtitle {
@@ -451,6 +479,10 @@ section {
   background-color: var(--blue);
 }
 
+.dark-blue-background {
+  background-color: var(--dark-blue);
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -475,4 +507,10 @@ section {
 .small-button:active {
 	position:relative;
 	top:1px;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

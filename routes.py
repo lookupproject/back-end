@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from app import app, db, load_user
 from models import User, Course, Progress
-from utils import generate_image_url, openai_response, sort, classifier
+from utils import generate_image_url, openai_response, sort, classifier, fact_evaluator
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, user_accessed, logout_user
@@ -59,7 +59,7 @@ def sign_up():
   # Asign data when form is submitted
   if form.validate_on_submit():
     img = generate_image_url()
-    user = User(username = form.username.data, email = form.email.data, img=img)
+    user = User(username = form.username.data, email = form.email.data, img=img, path=[{"Physical Science": 1, "Life Science": 1, "Earth Science": 1}])
     user.set_password(form.password.data)
 
     # Add data to database and commits
@@ -76,6 +76,21 @@ def sign_up():
 @app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
+  if request.method == "POST":
+    user = db.session.query(User).get(current_user.id)
+    lfp = db.session.query(Course).join(Progress).filter(Course.classification=='Life Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+    esp = db.session.query(Course).join(Progress).filter(Course.classification=='Earth Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+    psp = db.session.query(Course).join(Progress).filter(Course.classification=='Physical Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+
+    user.path =   {
+      "Life Science": len(lfp.items),
+      "Earth Science": len(esp.items),
+      "Physical Science": len(psp.items)
+    }
+
+    db.session.commit()
+    
+    return { "username": user.username, "lsp": len(lfp.items), "esp": len(esp.items), "psp": len(psp.items) }
   return render_template("home.html")
 
 @app.route('/path', methods=['GET', 'POST'])
@@ -91,8 +106,14 @@ def seasons():
 @app.route('/community', methods=['GET', 'POST'])
 @login_required
 def community():
-  page = db.session.query(Course).filter_by(creator_id=current_user.id).paginate(per_page=4)
-  return render_template("community.html", page=page, user_id=current_user.id)
+  user_courses_page = db.session.query(Course).filter_by(creator_id=current_user.id).paginate(per_page=4)
+  course_page = db.session.query(Course).paginate(per_page=12)
+  return render_template("community.html", 
+  user_courses_page=user_courses_page, 
+  course_page=course_page,
+  user_id=current_user.id, 
+  db=db,
+  User=User)
 
 @app.route('/my-profile', methods=['GET', 'POST'])
 @login_required
@@ -126,7 +147,7 @@ def creator(id):
 
 @app.route('/create', methods=['POST'])
 def create_course():
-  course = Course(name='Untitled', content={}, creator_id=current_user.id)
+  course = Course(name='Untitled', content={}, creator_id=current_user.id, classification='Life Science')
   db.session.add(course)
   db.session.commit()
   return redirect(url_for('creator', id=course.id))
@@ -151,6 +172,7 @@ def course(id):
     course.name = dict['name']
     course.content = dict['data']
     course.version = dict['version']
+    course.classification = dict['classification']
     db.session.commit()
     return ('Success')
   else:
@@ -172,6 +194,10 @@ def progress(course_id):
       return ("No new data")
     else:
       progress.progress = dict['progress']
+
+      if dict['finished']:
+        progress.finished = True
+
       db.session.commit()
       return ("Success")
 
@@ -193,7 +219,8 @@ def progress(course_id):
     db.session.commit()
 
   return {
-    "name": course.name,
+    "name": course.name, 
+    "type": course.classification,
     "course": course.content,
     "progress": progress.progress,
   }
@@ -201,7 +228,12 @@ def progress(course_id):
 @app.route('/api/feedback', methods=['POST'])
 def fetch_feedback():
   dict = request.get_json()
-  return {"feedback": openai_response(dict['context'], dict['question'], dict['answer'])}
+
+  if (dict['questionType'] == 'Fact Recall'):
+    print(dict['text'], dict['answer'])
+    return { "feedback": fact_evaluator(dict['text'], dict['answer']) }
+  else:
+    return {"feedback": "" }
 
 @app.route('/api/classifier', methods=['POST'])
 def fetch_classifier():
