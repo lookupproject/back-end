@@ -1,4 +1,17 @@
 /* General CSS */
+
+:root {
+  --dark-blue: #09051F;
+  --semi-dark-blue: #0B0623;
+  --blue: #0E072C;
+  --light-blue: #241372;
+  --green: #194F62;
+  --dark-green: #133B49;
+  --grey: #2E2E2E;
+  --dark-grey:#1d1d1d;
+  --very-dark-blue: #070416;
+}
+
 * {
   font-size: 16px;
   font-family: 'Arial', sans-serif;
@@ -10,7 +23,7 @@ body {
   width: 100%;
   text-align: center;
   margin: 0;
-  scrollbar-color: black grey;
+  background-color: var(--dark-blue);
 }
 
 div {
@@ -54,7 +67,7 @@ h3 {
 }
 
 .bg-color-main {
-  background-color: rgb(2, 22, 49);
+  background-color: var(--dark-blue);
 }
 
 .flex {
@@ -71,17 +84,12 @@ h3 {
   margin: 25px;
 }
 
-/* Landing CSS */
-.landing {
-  background-color: rgb(0, 0, 0);
-  height: 2930px;
-}
-
 /* Frame 1 */
 .frame-1 {
   height: 800px;
   width: 100%;
-  background-color: rgb(2, 22, 49);
+  /* background-color: rgb(2, 22, 49); */
+  background-color: var(--dark-blue);
   overflow: hidden;
 
   text-align: center;
