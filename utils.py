@@ -119,7 +119,9 @@ def classifier(prompt):
     response = openai.Completion.create(
     model="ada:ft-nstituto-tecnol-gico-y-de-estudios-superiores-de-monterrey-2023-01-03-05-01-28",
     prompt=prompt+' ->',
-    max_tokens=1
+    max_tokens=1,
+	temperature=0.2,
+	top_p=1
 	)
 
     q_class = response.choices[0].text
@@ -159,7 +161,7 @@ def fact_evaluator(text, answer):
 def divergent_evaluator(restrictions, answer):
 	response = openai.Completion.create(
 	model="text-davinci-003",
-	prompt="""Evaluate whether certain restrictions are satisfied or not.
+	prompt="""Evaluate whether certain restrictions are satisfied or not. Describe which restrictions are not satisfied.
 	\n\nRestrictions: Must be focused on young people. Must have some relevance 
 	to science and technology. Must be an activity\nText to evaluate: Creating 
 	videogames with science and technology tematics.\nEvaluation: 3/3. 
