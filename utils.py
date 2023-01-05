@@ -174,3 +174,27 @@ def divergent_evaluator(restrictions, answer):
 	)
 
 	return response.choices[0].text
+
+def content_evaluator(text, answer):
+	response = openai.Completion.create(
+	model="text-davinci-003",
+	prompt="""Evaluate whether the answer is complete, incomplete or 
+	with irrelevant information in comparison with the text. Describe 
+	the irrelevant or missing information.\n\nText: Superhero movies are 
+	popular because they contain a lot of action and comedy.\nAnswer: 
+	They are popular because they contain action.\nEvaluation: Incomplete. 
+	They are also popular due to their comedy.\n\nText: It conveys the corruption 
+	from the governor.\nAnswer: The cartoon conveys the corruption of the governor 
+	as well as how desperate he is for winning again.\nEvaluation: Complete. 
+	Although it does not convey the desperation of the government.\n\nText: 
+	Violence on television is very appealing due to the belic past of our civilization.
+	\nAnswer: It is appealing since we were violent in the past\nEvaluation: Complete.
+	\n\nText: {}\nAnswer: {}\nEvaluation:""".format(text, answer),
+	temperature=0.2,
+	max_tokens=256,
+	top_p=1,
+	frequency_penalty=0,
+	presence_penalty=0
+	)
+
+	return response.choices[0].text

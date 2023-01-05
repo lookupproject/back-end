@@ -1,7 +1,7 @@
 from http.client import HTTPResponse
 from app import app, db, load_user
 from models import User, Course, Progress
-from utils import generate_image_url, divergent_evaluator, sort, classifier, fact_evaluator
+from utils import generate_image_url, divergent_evaluator, sort, classifier, content_evaluator
 
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, user_accessed, logout_user
@@ -231,8 +231,8 @@ def progress(course_id):
 def fetch_feedback():
   dict = request.get_json()
 
-  if (dict['questionType'] == 'Fact Recall'):
-    return { "feedback": fact_evaluator(dict['text'], dict['answer']) }
+  if (dict['questionType'] == 'Fact Recall' or dict['questionType'] == 'Low Convergent' or dict['questionType'] == 'High Convergent'):
+    return { "feedback": content_evaluator(dict['text'], dict['answer']) }
   elif (dict['questionType'] == 'Low Divergent' or dict['questionType'] == 'High Divergent'):
     return {"feedback": divergent_evaluator(dict['text'], dict['answer']) }
   else:
