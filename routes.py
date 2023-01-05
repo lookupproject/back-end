@@ -100,16 +100,16 @@ def path():
 
   return render_template("path.html", page=page, db=db, User=User)
 
-@app.route('/seasons', methods=['GET', 'POST'])
+@app.route('/branches', methods=['GET', 'POST'])
 @login_required
-def seasons():
-  return render_template("seasons.html")
+def branches():
+  return render_template("branches.html")
 
 @app.route('/community', methods=['GET', 'POST'])
 @login_required
 def community():
   user_courses_page = db.session.query(Course).filter_by(creator_id=current_user.id).paginate(per_page=4)
-  course_page = db.session.query(Course).paginate(per_page=12)
+  course_page = db.session.query(Course).filter(Course.creator_id!=2).paginate(per_page=12)
   return render_template("community.html", 
   user_courses_page=user_courses_page, 
   course_page=course_page,

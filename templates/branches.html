@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Branches{% endblock %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<body>
+  <h1>
+    Branches
+  </h1>
+  <div id="main-button"></div>
+</body>
+{% endblock %}
