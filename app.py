@@ -5,7 +5,7 @@ from flask_login import LoginManager, current_user, login_user, logout_user, log
 import os
 import openai
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
