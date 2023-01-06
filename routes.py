@@ -169,6 +169,7 @@ def delete(id):
 @app.route('/course/<id>', methods=['GET', 'POST'])
 def course(id):
   course = db.session.query(Course).get_or_404(id)
+  user = db.session.query(User).get(current_user.id)
 
   if request.method == "POST":
     dict = request.get_json()
@@ -185,6 +186,7 @@ def course(id):
   else:
     return {
       "name": course.name,
+      "picUrl": user.img,
       "content": course.content,
       "version": course.version
 }
@@ -194,6 +196,7 @@ def course(id):
 def progress(course_id):
   progress = db.session.query(Progress).filter_by(user_id=current_user.id, course_id=course_id).first()
   course = db.session.query(Course).get_or_404(course_id)
+  user = db.session.query(User).get(current_user.id)
 
   if request.method == "POST":
     dict = request.get_json()
@@ -226,7 +229,8 @@ def progress(course_id):
     db.session.commit()
 
   return {
-    "name": course.name, 
+    "name": course.name,
+    "picUrl": user.img, 
     "type": course.classification,
     "course": course.content,
     "progress": progress.progress,
