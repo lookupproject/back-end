@@ -8,13 +8,11 @@ import openai
        
 def generate_image_url():
   img_url=""
-  lst = ["Earth", "Mars", "Mercury", "Venus", "Jupiter", "Saturn", "Uranus", "Venus"]
-  params = {'q': lst[randint(0,7)], 'description': '', 'media_type': 'image'}
-  r = requests.get("https://images-api.nasa.gov/search", params=params)
+  r = requests.get("https://api.nasa.gov/planetary/apod", params={'api_key':'ZAcsGXikreLJQYrqFlfwu23Tvzrm45hzLkY6Yary'})
 
   if r.status_code == 200:
-    img_url = json.loads(r.content)
-    img_url = img_url['collection']['items'][1]['links'][0]['href']
+    j = json.loads(r.content)
+    img_url = j['url']
 
   return img_url
 
