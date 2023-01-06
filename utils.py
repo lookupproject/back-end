@@ -3,12 +3,13 @@ import requests
 import json
 from models import Progress
 from random import randint
+import os
 
 import openai
        
 def generate_image_url():
   img_url=""
-  r = requests.get("https://api.nasa.gov/planetary/apod", params={'api_key':'ZAcsGXikreLJQYrqFlfwu23Tvzrm45hzLkY6Yary'})
+  r = requests.get("https://api.nasa.gov/planetary/apod", params={'api_key': os.getenv('NASA_API_KEY') })
 
   if r.status_code == 200:
     j = json.loads(r.content)
