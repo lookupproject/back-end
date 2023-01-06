@@ -376,17 +376,20 @@ section {
 }
 
 .titles {
-  text-shadow: 0px 1px 12px rgba(255, 255, 255, 0.65);
+  text-shadow: 0px 1px 12px rgba(124, 255, 2, 0.65);
   display: inline-block;
   margin-top: 1px;
   line-height: 24px;
   padding: 9px 0;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   font-size: 13px;
-  color: #8c9092;
+  color: white;
   cursor: pointer;
   text-align: center;
+}
+.titles:hover {
+  color: yellow;
 }
 
 .links {
