@@ -187,6 +187,7 @@ def course(id):
     return {
       "name": course.name,
       "picUrl": user.img,
+      "classification": course.classification,
       "content": course.content,
       "version": course.version
 }
