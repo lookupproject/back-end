@@ -10,6 +10,25 @@
   <h1>
     Branches
   </h1>
-  <div id="main-button"></div>
+  <div id="branch-app">
+    <div class="branch-1">
+      <h4>Life Science</h4>
+      {% for course in lsp.items %}
+      <h5>{{ course.name }}</h5>
+      {% endfor %}
+    </div>
+    <div class="branch-2">
+      <h4>Earth Science</h4>
+      {% for course in esp.items %}
+      <h5>{{ course.name }}</h5>
+      {% endfor %}
+    </div>
+    <div class="branch-3">
+      <h4>Physical Science</h4>
+      {% for course in psp.items %}
+      <h5>{{ course.name }}</h5>
+      {% endfor %}
+    </div>
+  </div>
 </body>
 {% endblock %}

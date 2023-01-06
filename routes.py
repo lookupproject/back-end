@@ -78,19 +78,19 @@ def sign_up():
 def home():
   if request.method == "POST":
     user = db.session.query(User).get(current_user.id)
-    lfp = db.session.query(Course).join(Progress).filter(Course.classification=='Life Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+    lsp = db.session.query(Course).join(Progress).filter(Course.classification=='Life Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
     esp = db.session.query(Course).join(Progress).filter(Course.classification=='Earth Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
     psp = db.session.query(Course).join(Progress).filter(Course.classification=='Physical Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
 
     user.path =   {
-      "Life Science": len(lfp.items),
+      "Life Science": len(lsp.items),
       "Earth Science": len(esp.items),
       "Physical Science": len(psp.items)
     }
 
     db.session.commit()
     
-    return { "username": user.username, "lsp": len(lfp.items), "esp": len(esp.items), "psp": len(psp.items) }
+    return { "username": user.username, "lsp": len(lsp.items), "esp": len(esp.items), "psp": len(psp.items) }
   return render_template("home.html")
 
 @app.route('/path', methods=['GET', 'POST'])
@@ -100,10 +100,13 @@ def path():
 
   return render_template("path.html", page=page, db=db, User=User)
 
-@app.route('/branches', methods=['GET', 'POST'])
+@app.route('/branches', methods=['GET'])
 @login_required
 def branches():
-  return render_template("branches.html")
+  lsp = db.session.query(Course).join(Progress).filter(Course.classification=='Life Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+  esp = db.session.query(Course).join(Progress).filter(Course.classification=='Earth Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+  psp = db.session.query(Course).join(Progress).filter(Course.classification=='Physical Science', Progress.user_id==current_user.id, Progress.finished==True).paginate(per_page=10)
+  return render_template("branches.html", lsp=lsp, esp=esp, psp=psp)
 
 @app.route('/community', methods=['GET', 'POST'])
 @login_required
