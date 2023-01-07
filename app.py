@@ -9,6 +9,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
+app.config['STATIC_URL'] = 'https://dq5b303kkrsao.cloudfront.net/static/'
 
 # Change postgres to postgresql
 uri = os.getenv("DATABASE_URL")

@@ -1,14 +1,22 @@
-from http.client import HTTPResponse
 from app import app, db, load_user
 from models import User, Course, Progress
 from utils import generate_image_url, divergent_evaluator, sort, classifier, content_evaluator
 
 from flask import flash, redirect, render_template, request, url_for
+from urllib.parse import urljoin
 from flask_login import current_user, login_required, login_user, user_accessed, logout_user
 from werkzeug.urls import url_parse
 from forms import RegistrationForm, LoginForm
 
-from sqlalchemy.orm.exc import NoResultFound
+@app.endpoint('static')
+def static(filename):
+  static_url = app.config.get('STATIC_URL')
+
+  if static_url:
+    print(urljoin(static_url, filename))
+    return redirect(urljoin(static_url, filename))
+
+  return app.send_static_file(filename)
 
 @app.route('/', methods=['GET', 'POST'])
 def landing():
