@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app import db, login
-from sqlalchemy import ForeignKey, Column, String, Integer, Boolean
+from . import db, login
+from sqlalchemy import ForeignKey, Column, String, Integer, Boolean, Table, MetaData
 from sqlalchemy.orm import relationship
 from sqlalchemy_json import mutable_json_type
 from sqlalchemy.dialects.postgresql import JSONB

@@ -1,11 +1,13 @@
-from app import db
+from . import db
 import requests
 import json
-from models import Progress
+from .models import Progress
 from random import randint
 import os
 
 import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
        
 def generate_image_url():
   img_url=""

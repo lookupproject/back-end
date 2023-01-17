@@ -1,15 +1,12 @@
 {% extends "base.html" %}
-{% block title %}Welcome{% endblock %}
+{% block title %}Home{% endblock %}
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/home.css') }}">
 {% endblock %}
 
 {% block content %}
-  <h1 class="title">Sorry mate. You are not logged in.</h1>
-
-  <!-- Login button -->
-  <a href="{{ url_for('auth.login') }}" class="button">
-    Log In
-  </a>
+  <div id="home">
+    <h1>404</h1>
+  </div>
 {% endblock %}

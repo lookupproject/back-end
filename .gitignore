@@ -1,3 +1,8 @@
 venv/
 __pycache__/
 static/
+back_end.egg-info/
+
+dist/
+build/
+*.egg-info/

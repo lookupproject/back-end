@@ -1,0 +1,4 @@
+graft back-end/templates
+graft back-end/static
+
+global-exclude *.pyc

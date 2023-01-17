@@ -23,7 +23,7 @@
       <h4>{{ course.name }}</h4>
       <div id="flex-row">
         <h6>Created by {{ db.session.query(User).get(course.creator_id).username }}</h6>
-        <a class="small-button" href="{{ url_for('viewer', id=course.id) }}">
+        <a class="small-button" href="{{ url_for('home.viewer', id=course.id) }}">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
           <path d="M7 15.5v-11l8.5 5.5Z"/></svg>
         </a>
@@ -34,7 +34,7 @@
   <div class="pagination">
     {% if pagination.has_prev %}
         <span>
-            <a class='page-number' href="{{ url_for('community', p=pagination.prev_num) }}">
+            <a class='page-number' href="{{ url_for('home.community', p=pagination.prev_num) }}">
                 {{ '<' }}
             </a>
         </span>
@@ -44,7 +44,7 @@
       {% if pagination.page != number %}
           <span>
             <a class='page-number'
-                href="{{ url_for('community', p=number) }}">
+                href="{{ url_for('home.community', p=number) }}">
             {{ number }}
             </a>
           </span>
@@ -56,7 +56,7 @@
     {% if pagination.has_next %}
       <span>
         <a class='page-number'
-            href="{{ url_for('community', p=pagination.next_num) }}">
+            href="{{ url_for('home.community', p=pagination.next_num) }}">
             {{ '>' }}
         </a>
       </span>
@@ -69,16 +69,16 @@
     <div id="course-widget" class="round-border blue-border-dashed blue-background">
       <h4>{{ course.name }}</h4>
       <div id="flex-row">
-        <a class="small-button" href="{{ url_for('viewer', id=course.id) }}">
+        <a class="small-button" href="{{ url_for('home.viewer', id=course.id) }}">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
           <path d="M7 15.5v-11l8.5 5.5Z"/></svg>
         </a>
-        <a class="small-button" href="{{ url_for('creator', id=course.id) }}">
+        <a class="small-button" href="{{ url_for('home.creator', id=course.id) }}">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
             <path d="m16.188 7.542-3.73-3.73 1.021-1.02q.521-.521 1.24-.521t1.239.521l1.25 1.25q.5.5.5 1.239 0 .74-.5 1.24Zm-1.23 1.229L6.229 17.5H2.5v-3.729l8.729-8.729Z"/>
           </svg>
         </a>
-        <a class="small-button" href="{{ url_for('delete', id=course.id) }}">
+        <a class="small-button" href="{{ url_for('api.delete', id=course.id) }}">
           <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
             <path d="M6.5 17q-.625 0-1.062-.438Q5 16.125 5 15.5v-10H4V4h4V3h4v1h4v1.5h-1v10q0 .625-.438 1.062Q14.125 17 13.5 17ZM8 14h1.5V7H8Zm2.5 0H12V7h-1.5Z"/>
           </svg>

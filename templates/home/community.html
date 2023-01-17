@@ -11,7 +11,7 @@
     <div id="app">
       <div class="wrapper subtitle">
         <h1>Community</h1>
-        <form action="/create" method="post" class="inline-flex">
+        <form action="{{ url_for('api.create_course') }}" method="post" class="inline-flex">
           <input type="submit" value="Create a course!">
         </form>
       </div>
