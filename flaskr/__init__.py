@@ -15,7 +15,7 @@ def create_app(test_config=None):
 
   static_url = app.static_folder
   if os.getenv("MODE") == 'Production':
-    static_url = 'https://dq5b303kkrsao.cloudfront.net/static/'
+    static_url = os.getenv("STATIC_URL")
 
   app.config.from_mapping(
     SECRET_KEY='192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf',
