@@ -1,6 +1,7 @@
 venv/
 __pycache__/
-flask/static/
+flaskr/static/
+flaskr/__pycache__/
 
 dist/
 build/
