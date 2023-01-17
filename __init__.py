@@ -43,7 +43,7 @@ def create_app(test_config=None):
     pass
 
 
-  from . import auth, api, home
+  import auth, api, home
   app.register_blueprint(auth.bp)
   app.register_blueprint(api.bp)
   app.register_blueprint(home.bp)
