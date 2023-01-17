@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
+from urllib.parse import urljoin
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 import os
@@ -13,15 +14,14 @@ def create_app(test_config=None):
   if uri and uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
 
-  static_url = app.static_folder
   if os.getenv("MODE") == 'Production':
     static_url = os.getenv("STATIC_URL")
+    app.config['STATIC_URL'] = static_url
 
   app.config.from_mapping(
     SECRET_KEY='192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf',
     SQLALCHEMY_DATABASE_URI = uri,
     SQLALCHEMY_TRACK_MODIFICATIONS = False,
-    STATIC_URL=static_url
   )
 
   login.init_app(app)
@@ -55,6 +55,16 @@ def create_app(test_config=None):
   @login.unauthorized_handler
   def unauthorized():
     return render_template("no-user.html")
+
+  @app.endpoint('static')
+  def static(filename):
+    static_url = app.config.get('STATIC_URL')
+
+    if static_url:
+      print(urljoin(static_url, filename))
+      return redirect(urljoin(static_url, filename))
+
+    return app.send_static_file(filename)
 
   # Need to be placed at the end
   from flaskr.models import User
