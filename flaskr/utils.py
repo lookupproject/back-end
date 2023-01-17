@@ -1,11 +1,11 @@
-from . import db
+import os
 import requests
 import json
-from .models import Progress
 from random import randint
-import os
-
 import openai
+from flaskr import db
+from flaskr.models import Progress
+
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
        

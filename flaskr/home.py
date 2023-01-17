@@ -1,10 +1,10 @@
-from . import db
-from .models import User, Course, Progress
 from flask import (
     Blueprint, render_template, request, redirect
 )
 from flask_login import current_user, login_required
 from urllib.parse import urljoin
+from flaskr import db
+from flaskr.models import User, Course, Progress
 
 bp = Blueprint('home', __name__)
 

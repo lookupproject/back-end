@@ -43,7 +43,7 @@ def create_app(test_config=None):
     pass
 
 
-  import auth, api, home
+  from flaskr import auth, api, home
   app.register_blueprint(auth.bp)
   app.register_blueprint(api.bp)
   app.register_blueprint(home.bp)
@@ -57,7 +57,7 @@ def create_app(test_config=None):
     return render_template("no-user.html")
 
   # Need to be placed at the end
-  from .models import User
+  from flaskr.models import User
 
   return app
 

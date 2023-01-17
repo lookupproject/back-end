@@ -1,10 +1,10 @@
-from . import db
 from flask import (
     Blueprint, render_template, request, redirect, url_for
 )
-from .utils import divergent_evaluator, classifier, content_evaluator, sort
 from flask_login import current_user
-from .models import Course, User, Progress
+from flaskr.utils import divergent_evaluator, classifier, content_evaluator, sort
+from flaskr import db
+from flaskr.models import Course, User, Progress
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 

@@ -2,12 +2,12 @@ import functools
 from flask import (
     Blueprint, flash, redirect, render_template, url_for
 )
-from .forms import RegistrationForm, LoginForm
 from flask_login import current_user, login_user, logout_user
-from .models import User
 from werkzeug.urls import url_parse
-from . import db
-from .utils import generate_image_url
+from flaskr import db
+from flaskr.forms import RegistrationForm, LoginForm
+from flaskr.models import User
+from flaskr.utils import generate_image_url
 
 bp = Blueprint('auth', __name__ , url_prefix='/auth')
 
