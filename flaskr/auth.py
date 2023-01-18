@@ -2,9 +2,8 @@ import functools
 from flask import (
     Blueprint, flash, redirect, render_template, url_for
 )
-from flask_login import current_user, login_user, logout_user
 from werkzeug.urls import url_parse
-from flaskr import db
+from flask_login import current_user, login_user, logout_user, login_required
 from flaskr.forms import RegistrationForm, LoginForm
 from flaskr.models import User
 from flaskr.utils import generate_image_url

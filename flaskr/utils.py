@@ -3,7 +3,7 @@ import requests
 import json
 from random import randint
 import openai
-from flaskr import db
+from flaskr.models import db
 from flaskr.models import Progress
 
 

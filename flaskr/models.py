@@ -4,7 +4,10 @@ from sqlalchemy import ForeignKey, Column, String, Integer, Boolean, Table, Meta
 from sqlalchemy.orm import relationship
 from sqlalchemy_json import mutable_json_type
 from sqlalchemy.dialects.postgresql import JSONB
-from flaskr import db, login
+from flask_sqlalchemy import SQLAlchemy
+from flaskr.login import login
+
+db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
   __tablename__ = 'users'
