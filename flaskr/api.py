@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, redirect, url_for
+    Blueprint, render_template, request, redirect, url_for, Response, abort
 )
 from flask_login import current_user
 from flaskr.utils import divergent_evaluator, classifier, content_evaluator, sort
@@ -7,6 +7,7 @@ from flaskr.models import db
 from flaskr.models import Course, User, Progress
 
 bp = Blueprint('api', __name__, url_prefix='/api')
+APPROVED_HOSTS = set(["google.com", "www.google.com", "yahoo.com", "api.nasa.gov"])
 
 @bp.route('/feedback', methods=['POST'])
 def fetch_feedback():

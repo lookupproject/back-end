@@ -1,27 +1,43 @@
 {% extends "landing-template.html" %}
-{% block title %}Welcome{% endblock %}
+{% block title %}Start{% endblock %}
 {% block head %}
-    {{ super() }}
-    <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/landing.css') }}">
+  {{ super() }}
+  <link rel="stylesheet" href = "{{ url_for('static', filename='stylesheets/landing.css') }}">
+  <script defer src="{{ url_for( 'static', filename='scripts/landing.bundle.js') }}"></script>
 {% endblock %}
 
 {% block content %}
 <body>
-  
-    <div class="frame-1">
-      <div id="login">
-        <a href="{{ url_for('auth.login') }}">Log In</a>
-      </div>
-    
-      <h1>lookup</h1>
-      <h3>Explore. Learn. Repeat.</h3>
-    
-      <div id="planet-container">
-        <a href="{{ url_for('auth.signup') }}" id="sign-up">
-          Start game
-        </a>
-        <h3 id="planet"></h3>
+  <header class="flex flex-items-center p-absolute">
+    <div class="container-l1 flex flex-items-center flex-column p-relative">
+      <a href="{{ url_for('home.landing') }}">
+        <svg width="52" height="52" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="25 125 550 550">
+          <defs>
+            <style>.cls-1{fill:#ffff;}.cls-1,.cls-2{stroke:#231f20;stroke-miterlimit:10;}</style>
+          </defs>
+          <circle class="cls-1" cx="297.64" cy="415.66" r="261.43" mask="url(#hole)"/>
+          <path class="cls-2" d="M296.07,207.23c27.86,60.65,12.19,109.65-37.45,149.57,58.4,23.23,89.73-8.15,98.54-42.94C367.23,274.05,344.11,232.5,296.07,207.23Z"/>
+          <path class="cls-2" d="M347.22,376.65s-22.3,15.62-23.65,48,0,194.84,2.56,194.83c-20.77-23.89-40.57-27-59,0,1,1.16,1.66-153.56,0-193.85-1.52-37.22-26.43-48.94-26.43-48.94Q294,398.06,347.22,376.65Z"/>
+          <circle class="cls-2" cx="261.83" cy="258.5" r="14.65"/>
+        </svg>
+      </a>
+    </div>
+    <a href="{{ url_for('auth.login') }}" class="p-absolute top-right header-link">Sign In</a>
+  </header>
+  <div id="viewDiv"></div>
+  <div id="display-1">
+    <h1 id="title">lookup</h1>
+    <a href="{{ url_for('auth.signup') }}" class="button start">Start</a>
+  </div>
+  <footer class="">
+    <div class="container-l1 color-bg-black">
+      <div class="container-l1 flex flex-justify-between flex-items-center flex-row">
+        <ul class="list-style-none flex flex-justify-between w-full">
+          <li class="color-fg-muted">© 2023 Lookup</li>
+          <li class="color-fg-muted">Powered by <a href="https://www.esri.com/">Esri</a></li>
+        </ul>
       </div>
     </div>
+  </footer>
 </body>
 {% endblock %}
