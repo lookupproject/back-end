@@ -5,7 +5,7 @@ from flask import (
 from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
 from flaskr.forms import RegistrationForm, LoginForm
-from flaskr.models import User
+from flaskr.models import User, db
 from flaskr.utils import generate_image_url
 
 bp = Blueprint('auth', __name__ , url_prefix='/auth')
